@@ -7,20 +7,14 @@ class Superadmin extends CI_Controller {
         {
                 parent::__construct();
                 $this->load->model('Superadmin_model','superadmin');
+                 
                 
         }
 
 // controller for load the index page
 	public function index()
-	{
+	{   
 		$this->load->view('index');
-	}
-   
-
-// controller for superadmin login   
-	public function superadmin_login()
-	{
-		$this->load->view('dashboard');
 	}
 
 //controller for superadmin registration 
@@ -45,6 +39,75 @@ class Superadmin extends CI_Controller {
 			}
 
 		}
-	
 	}
+
+// controller to check email exit in superadmin table 
+
+	public function Checkemail_emailexit()
+		{
+			$requestedEmail = $this->input->post('email');
+			$getemail=$this->db->get_where('superadmin',array('email' => $requestedEmail))->num_rows();
+			if($getemail == 0)
+			{
+				echo 'true';
+			}
+			else
+			{
+				echo 'false';
+			}
+       }
+
+       
+
+// controller for superadmin login   
+	public function superadmin_login()
+	{
+		 $this->form_validation->set_rules('username','Username','required');	
+           $this->form_validation->set_rules('password','Password','required');	
+
+           if($this->form_validation->run())
+           {
+           	  $username = $this->input->post('username');
+              $password = md5($this->input->post('password'));
+              $login_id = $this->superadmin->admin_login($username,$password);
+              if($login_id)
+              	  {
+              	  	 $userdata = array(
+                    'id' => $login_id->id,
+                    'username' => $login_id->username,
+                    'password' => $login_id->password
+                     );
+
+              	  	 $this->session->set_userdata($userdata);
+              	  	 redirect(base_url('superadmin/dashboard'));
+              	  }
+
+               else {
+
+                $this->session->set_flashdata('login_failed', 'Invalid Username/Password');
+                redirect(base_url('superadmin/index'));
+            }
+           }
+           else
+           {
+             $this->load->view('superadmin/index');
+           }
+	}
+
+// admin dashboard 
+
+	public function dashboard()
+	{
+		$this->load->view('dashboard');
+	}
+
+// admin logout 
+
+	public function logout()
+        {
+            $this->session->unset_userdata('id'); 
+             redirect(base_url('superadmin/index'));
+        }   
+
+
 }
