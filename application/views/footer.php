@@ -35,6 +35,9 @@
     <script src="<?php echo base_url();?>dist/js/pages/chart/chart-page-init.js"></script>
     <script src="<?php echo base_url();?>assets/libs/jquery-validation/dist/additional-methods.js"></script>
     <script src="<?php echo base_url();?>assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url();?>assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="<?php echo base_url();?>assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="<?php echo base_url();?>assets/extra-libs/DataTables/datatables.min.js"></script>
 
 </body>
 
