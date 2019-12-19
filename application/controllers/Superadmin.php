@@ -238,9 +238,31 @@ public function show_backenduser()
 	$this->load->view('show_backenduser');
 }
 
-public function edit_data()
+public function showedit_data()
 {
 	$this->load->view('edit_data');
+}
+
+public function edit_backendUser($user_id)
+{
+	if($this->input->post('submit'))
+	{
+	$data['school_id'] = $this->input->post('school_id');
+	$data['role'] = $this->input->post('role');
+	$data['login_name'] = $this->input->post('login_name');
+	$data['first_name'] = $this->input->post('first_name');
+	$data['last_name'] = $this->input->post('last_name');
+    $data['user_email'] = $this->input->post('user_email');
+    $data['user_phone'] = $this->input->post('user_phone');
+    $data['user_mobile'] = $this->input->post('user_mobile');
+    $data['user_dob'] = $this->input->post('user_dob');
+    $data['user_doj'] = $this->input->post('user_doj');
+	$update = $this->superadmin->update_data($user_id,$data);
+	if($update)
+	{
+		echo "Data Updated";
+	}
+	}	
 }
 
 
