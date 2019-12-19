@@ -68,16 +68,20 @@ $(document).ready(function(){
      rules: {
                     username: {
                         required : true,
-                        minlength: 3
+                        minlength: 3,
+                         remote: {
+                                url: "<?php echo base_url();?>superadmin/Checkusername_exit",
+                                type: "post"   
+                            }
                     },
 
                     email: {
                         required : true,
                             email: true,
-                          // remote: {
-                          //       url: "Checkemail_emailexit",
-                          //       type: "post"   
-                          //   }
+                          remote: {
+                                url: "<?php echo base_url();?>superadmin/Checkemail_emailexit",
+                                type: "post"   
+                            }
 
                     },
 
@@ -90,13 +94,14 @@ $(document).ready(function(){
  messages: {
                     username: {
                         required : "Username must is required",
-                        minlength: "First Name must contain at least 3 characters"
+                        minlength: "First Name must contain at least 3 characters",
+                         remote: "username already exit."
                     },
 
                     email: {
                         required : "Email must is required",
-                        email: "Enter a valid email"
-                       // remote: "Email already register."
+                        email: "Enter a valid email",
+                        remote: "Email already exit."
                     },
                  
                 } // message tag end        
