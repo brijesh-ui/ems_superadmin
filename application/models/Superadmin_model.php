@@ -14,16 +14,21 @@ public function superadmin_dataInsert($data)
 // code for login
 public function admin_login($username,$password)
 {
-	$q = $this->db->where('username',$username)
+	$q = $this->db->select('*')
+	              ->where('username',$username)
 		          ->where('password',$password)
 		          ->from('superadmin')
-		          ->get();     
-	if($q->num_rows() == 1) 
-		{
-        return $q->row();
-        }
-
-        return false;
+		          ->get();
+	$data = $q->result_array();
+	$status = $data[0]['status'];	               
+	if($status == 1) 
+	{
+        return true;
+    }
+    else
+    {
+    	return false;
+    }
  
 }
 
