@@ -39,12 +39,17 @@ public function insert_backenduser($data)
 }
 
 public function update_data($user_id,Array $data)
-  {
+{
     
    return $this->db->where('user_id',$user_id)
                    ->update('wp_backend_user',$data);
 
-  }
+}
+
+public function insert_schoolName($school)
+{
+	  return $this->db->insert('wp_school',$school);
+} 
 
 
 } // end main class
