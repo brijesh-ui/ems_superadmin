@@ -350,6 +350,21 @@ public function insert_School()
     
 }
 
+public function CheckschoolName()
+{
+    $requestedSchool = $this->input->post('school_name');
+    $getemail=$this->db->get_where('wp_school',array('school_name' => $requestedSchool))->num_rows();
+    if($getemail == 0)
+    {
+        echo 'true';
+    }
+    else
+    {
+        echo 'false';
+    }
+
+}
+
 
 
 
