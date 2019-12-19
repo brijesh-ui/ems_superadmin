@@ -139,16 +139,15 @@
                 </div>
  
             </div>
-
-            <footer class="footer text-center">
-                All Rights Reserved
-            </footer>
-        </div>
+</div>
+<footer class="footer text-center">
+ All Rights Reserved
+</footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
-  $('#signup-form').validate({
+$('#signup-form').validate({
 
      rules: {
                     school_id: {
@@ -166,13 +165,13 @@ $(document).ready(function(){
                     },
 
                     login_name: {
-                        required : true,
-                        minlength: 3
+                     required : true,
+                     minlength: 3,
+                        remote: {
+                                url: "<?php echo base_url();?>superadmin/Checkloginname_userbackend",
+                                type: "post"   
+                            }
                     },
-
-                    //  role: {
-                    //     required : true
-                    // },
 
                      first_name: {
                         required : true,
@@ -196,7 +195,7 @@ $(document).ready(function(){
 
                     user_mobile: {
                         required : true,
-                        maxlength: 12	 
+                        maxlength: 12    
                     },
 
 
@@ -208,18 +207,20 @@ $(document).ready(function(){
                     user_email: {
                         required : "Email must is required",
                         email: "Enter a valid email",
-                        remote: "Email already register."
+                        remote: "Email is already exit."
+                    },
+
+                    login_name: {
+                        required : "login name must is required",
+                        minlength: "minlength is 3",
+                        remote: "login name is already exit."
                     },
                  
-                } // message tag end        
+         } // message tag end        
+});     
+
 });
-});
+    
 </script>
-  
-
-
-
-
-
 
 <?php include 'footer.php'; ?>
