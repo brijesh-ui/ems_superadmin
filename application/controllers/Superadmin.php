@@ -6,9 +6,8 @@ class Superadmin extends CI_Controller {
 public function __construct()
 {
     parent::__construct();
-    $this->load->model('Superadmin_model','superadmin');
-                 
-                
+    $this->load->model('Superadmin_model','superadmin');  
+                          
 }
 
 // controller for load the index page
@@ -87,14 +86,14 @@ public function superadmin_login()
         $login_id = $this->superadmin->admin_login($username,$password);
         if($login_id)
           {
-            $userdata = array
+            $session_data = array
             (
             'id' => $login_id->id,
             'username' => $login_id->username,
             'password' => $login_id->password
              );
 
-        $this->session->set_userdata($userdata);
+        $this->session->set_userdata('logged_in',$session_data);
         redirect(base_url('superadmin/dashboard'));
           }
 
@@ -109,6 +108,7 @@ public function superadmin_login()
         {
             $this->load->view('superadmin/index');
         }
+
 }
 
 // admin dashboard 
@@ -120,8 +120,14 @@ public function dashboard()
 // admin logout 
 public function logout()
 {
-    $this->session->unset_userdata('id'); 
-    redirect(base_url('superadmin/index'));
+     $session_data = array
+            (
+            'id' => '',
+            'username' => '',
+            'password' => ''
+             );
+    $this->session->unset_userdata('logged_in',$session_data ); 
+    return redirect(base_url('superadmin/index'));
 }
 
 // for redirect forget password link
@@ -178,41 +184,31 @@ public function password_sendMail()
     if(count($getemail)==1)
     {
 
-    $user_id = $getemail[0]['id']; 
-    // echo "<a href='reset_password/".$user_id."'>Reset Password";
-    // die;
+    $user_id = $getemail[0]['id'];
+    $url = base_url('superadmin/reset_password/"'.$user_id.'"');
+    $data = '<a href="'.$url.'">click here to reset password</a>';
+    print_r($data);
+    die;
     $to = $getemail[0]['email'];
     $subject = 'Your password reset request';
     $from = 'brijesh@sodainmind.com';
     // set email content
-    $emailContent = '<!DOCTYPE><html><head></head><body><table width="600px" style="border:1px solid 
-                    #cccccc;margin: auto;border-spacing:0;"><tr><td
-                    style="background:#ffffff;padding-left:3%">Ems-Superadmin</td></tr>';
-    $emailContent.='<tr><td style="height:20px"></td></tr>';
-    $emailContent.='<tr><td style="height:20px">"'."<a href='reset_password/".$user_id."'>Reset Password".'
-                   "</td></tr>';
-    $emailContent.='<tr><td style="height:20px"></td></tr>';                
-    $emailContent.= "<tr><td style='background:#000000;color: #ffffff;padding: 2%;text-align: center;font-size:
-                    13px;'><p style='margin-top:1px;'>Ems Superadmin</p></td></tr></table></body></html>";
+    $emailContent = '<header style="height: 30px; width: 100%; background-color: #333; text-align: center;">
+                     <h3 style="color: white;">Email from ems superadmin</h3></header>';
+    $emailContent.='<h2><a href="'.$url.'">click here to reset password</a></h2>';                         
     
     // configure for send mail 
     $config['protocol']    = 'smtp';
-    $config['smtp_host']    = 'smtp.sendgrid.net';
-    $config['smtp_port']    = '587';
-    $config['smtp_timeout'] = '60';
-
-    $config['api_user']   = 'Email';    //Important
-    $config['api_key']    = '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';  //Important
-    $config['api_format'] = 'json';
-
-
-    $config['charset']    = 'utf-8';
-    $config['newline']    = "\r\n";
-    $config['mailtype'] = 'html'; // or html
-    $config['validation'] = TRUE; // bool whether to validate email or not 
-
+    $config['smtp_host']   = 'smtp.sendgrid.net';
+    $config['smtp_port']   = 587;
+    $config['crlf']        = "\r\n";
+    $config['newline']     = "\r\n";
+    $config['smtp_user'] = '';
+    $config['smtp_pass'] = '';
+    // $config['api_user']   = 'Brijesh_Maurya';    //Important
+    // $config['api_key']    = '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';  //Important
+    // $config['api_format'] = 'json';
      
-
     $this->email->initialize($config);
     $this->email->set_mailtype("html");
     $this->email->from($from);
@@ -284,6 +280,21 @@ public function Checkemail_userbackend()
 
 }
 
+public function Checkloginname_userbackend()
+{
+    $requestedLoginname = $this->input->post('login_name');
+    $getname=$this->db->get_where('wp_backend_user',array('login_name' => $requestedLoginname))->num_rows();
+    if($getname == 0)
+    {
+        echo 'true';
+    }
+    else
+    {
+        echo 'false';
+    }
+
+}
+
 
 // dbackend user data edit
 public function show_backenduser()
@@ -316,6 +327,27 @@ public function edit_backendUser($user_id)
 		echo "Data Updated";
 	}
 	}	
+}
+
+// school data
+public function insertSchool()
+{
+    $this->load->view('insertSchool');
+}
+
+public function insert_School()
+{
+    if($this->input->post('submit'))
+    {
+        $school['school_name'] = $this->input->post('school_name');
+        $insert = $this->superadmin->insert_schoolName($school);
+    if($insert)
+    {
+        $this->session->set_flashdata('message',"Your Data Inserted Successfully");
+        $this->load->view('insertSchool');
+    }
+    }
+    
 }
 
 
