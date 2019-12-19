@@ -112,7 +112,40 @@ public function logout()
 public function forget_password()
 {
 	$this->load->view('forget_password');
-}   
+}  
+
+//reset password 
+public function reset_password()
+{
+	$this->load->view('reset_password');
+} 
+
+public function update_password()
+{
+	if($this->input->post('update'))
+	{
+		$user_id = $this->input->post('user_id');
+		$password = md5($this->input->post('password'));
+		$confirm_password = md5($this->input->post('confirm_password'));
+		if($password==$confirm_password)
+		{
+		$update=$this->db->set('password',$password)
+		                 ->where('id',$user_id)
+		                 ->from('superadmin')
+                         ->update();
+        if($update)
+        {    
+        	 $this->session->set_flashdata('update','your password updated successfully');
+        	 redirect(base_url('superadmin/reset_password'));
+        }                                        
+		}
+		else
+		{
+          echo "Plese confirm the same password"; 
+		}
+	}
+
+}
 
 
 //forget password send mail code
@@ -125,11 +158,13 @@ public function password_sendMail()
     $get = $this->db->where('email',$email)
                          ->from('superadmin')
                          ->get();
-    $getemail = $get->result_array();                  
+    $getemail = $get->result_array();                
     if(count($getemail)==1)
     {
 
-    $user_id = $getemail[0]['id']; 	
+    $user_id = $getemail[0]['id']; 
+    // echo "<a href='reset_password/".$user_id."'>Reset Password";
+    // die;
     $to = $getemail[0]['email'];
     $subject = 'Password Reset Mail';
     $from = 'brijesh@sodainmind.com';
@@ -138,7 +173,8 @@ public function password_sendMail()
                     #cccccc;margin: auto;border-spacing:0;"><tr><td
                     style="background:#ffffff;padding-left:3%">Ems-Superadmin</td></tr>';
     $emailContent.='<tr><td style="height:20px"></td></tr>';
-    $emailContent.='<tr><td style="height:20px"></td></tr>';
+    $emailContent.='<tr><td style="height:20px">"'."<a href='reset_password/".$user_id."'>Reset Password".'
+                   "</td></tr>';
     $emailContent.='<tr><td style="height:20px"></td></tr>';                
     $emailContent.= "<tr><td style='background:#000000;color: #ffffff;padding: 2%;text-align: center;font-size:
                     13px;'><p style='margin-top:1px;'>Ems Superadmin</p></td></tr></table></body></html>";
