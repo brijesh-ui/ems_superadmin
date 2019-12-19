@@ -56,6 +56,22 @@ public function Checkemail_emailexit()
 	  }
 }
 
+//controller to check username ext
+
+public function Checkusername_exit()
+{
+    $requestusername = $this->input->post('username');
+    $getemail=$this->db->get_where('superadmin',array('username' => $requestusername))->num_rows();
+    if($getemail == 0)
+      {
+        echo 'true';
+      }
+    else
+      {
+        echo 'false';
+      }
+}
+
        
 
 // controller for superadmin login   
@@ -84,7 +100,7 @@ public function superadmin_login()
 
         else{
 
-            $this->session->set_flashdata('login_failed', 'Invalid Username/Password');
+            $this->session->set_flashdata('login_failed', 'Your account is not activated yet, plese wait ..');
             redirect(base_url('superadmin/index'));
             }
            }
@@ -166,7 +182,7 @@ public function password_sendMail()
     // echo "<a href='reset_password/".$user_id."'>Reset Password";
     // die;
     $to = $getemail[0]['email'];
-    $subject = 'Password Reset Mail';
+    $subject = 'Your password reset request';
     $from = 'brijesh@sodainmind.com';
     // set email content
     $emailContent = '<!DOCTYPE><html><head></head><body><table width="600px" style="border:1px solid 
@@ -185,9 +201,10 @@ public function password_sendMail()
     $config['smtp_port']    = '587';
     $config['smtp_timeout'] = '60';
 
-    $config['api_user']   = 'Brijesh_Maurya';    //Important
-    $config['api_key']    = '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';  //Important
+    $config['api_user']   = 'Email';    //Important
+    $config['api_key']    = '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';  //Important
     $config['api_format'] = 'json';
+
 
     $config['charset']    = 'utf-8';
     $config['newline']    = "\r\n";
