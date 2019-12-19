@@ -37,8 +37,8 @@
                                         ?>
                                             <tr>
                                                 <td><?php echo $row->login_name ?></td>
-                                                <td><?php echo $row->school_name ?></td>
                                                 <td><?php echo $row->role ?></td>
+                                                <td><?php echo $row->school_name ?></td>
                                                 <td><?php echo $row->first_name ?></td>
                                                 <td><?php echo $row->last_name ?></td>
                                                 <td><?php echo $row->user_email ?></td>
@@ -46,7 +46,7 @@
                                                 <td><?php echo $row->user_mobile ?></td>
                                                 <td><?php echo $row->user_dob ?></td>
                                                 <td><?php echo $row->user_doj ?></td>
-                                                <td><?=  anchor("superadmin/edit_data/{$row->user_id}",'Edit',['class'=>'btn btn-default']);  ?></td>
+                                                <td><?=  anchor("superadmin/showedit_data/{$row->user_id}",'Edit',['class'=>'btn btn-default']);  ?></td>
                                             </tr>
                                         <?php endforeach; ?>    
                                         </tbody>
