@@ -96,6 +96,12 @@ function get_all_data()
            return $this->db->count_all_results();  
 }  
 
+public function deleteSchoolName($id)
+{
+	return $this->db->where('id',$id)
+	                ->delete('wp_school');
+}
+
 
 
 
