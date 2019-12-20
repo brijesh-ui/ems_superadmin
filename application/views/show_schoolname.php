@@ -13,6 +13,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">All School Name</h5>
+                                <span style="color: red;font-size: 12px;"><?php echo $this->session->flashdata('delete'); ?></span>
                                 <div class="table-responsive">
                                     <table id="user_data" class="table table-bordered table-striped" style="text-align:center;">  
                                     <thead>  
