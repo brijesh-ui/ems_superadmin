@@ -365,6 +365,33 @@ public function CheckschoolName()
 
 }
 
+public function show_schoolname()
+{
+    $this->load->view('show_schoolname');
+}
+
+public function fetch_school()
+{
+     
+           $fetch_data = $this->superadmin->make_datatables();  
+           $data = array();  
+           foreach($fetch_data as $row)  
+           {  
+                $sub_array = array();  
+                $sub_array[] = $row->school_name;  
+                $sub_array[] = '<button type="button" name="update" id="'.$row->id.'" class="btn btn-warning btn-xs">Update</button>';  
+                $sub_array[] = '<button type="button" name="delete" id="'.$row->id.'" class="btn btn-danger btn-xs">Delete</button>';  
+                $data[] = $sub_array;  
+           }  
+           $output = array(  
+                "draw"                    =>     intval($_POST["draw"]),  
+                "recordsTotal"          =>      $this->superadmin->get_all_data(),  
+                "recordsFiltered"     =>     $this->superadmin->get_filtered_data(),  
+                "data"                    =>     $data  
+           );  
+           echo json_encode($output);  
+}
+
 
 
 
