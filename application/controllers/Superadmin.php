@@ -303,10 +303,11 @@ public function showedit_data()
 	$this->load->view('edit_data');
 }
 
-public function edit_backendUser($user_id)
+public function edit_backendUser()
 {
 	if($this->input->post('submit'))
 	{
+    $user_id = $this->input->post('user_id');   
 	$data['school_id'] = $this->input->post('school_id');
 	$data['role'] = $this->input->post('role');
 	$data['login_name'] = $this->input->post('login_name');
@@ -320,8 +321,10 @@ public function edit_backendUser($user_id)
 	$update = $this->superadmin->update_data($user_id,$data);
 	if($update)
 	{
-		echo "Data Updated";
+		$this->session->set_flashdata('update','Your data updated successfully');
+        $this->load->view('show_backenduser');
 	}
+    
 	}	
 }
 
@@ -429,8 +432,4 @@ public function update_data()
     
 }
 
-
-
 }// end of main class
-
-?>
