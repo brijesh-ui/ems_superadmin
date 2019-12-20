@@ -1,4 +1,4 @@
-<?php
+<?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Superadmin extends CI_Controller {
@@ -10,7 +10,7 @@ public function __construct()
                           
 }
 
-// controller for load the index page
+# controller for load the index page
 public function index()
 {   
 	$this->load->view('index');
@@ -377,10 +377,13 @@ public function fetch_school()
            $data = array();  
            foreach($fetch_data as $row)  
            {  
+                $id = $row->id;
+                $delete_url = base_url() . '/superadmin/deleteSchoolName/' . $id;
+                $update_url =base_url() . '/superadmin/updateSchoolName/' . $id; 
                 $sub_array = array();  
                 $sub_array[] = $row->school_name;  
-                $sub_array[] = '<button type="button" name="update" id="'.$row->id.'" class="btn btn-warning btn-xs">Update</button>';  
-                $sub_array[] = '<button type="button" name="delete" id="'.$row->id.'" class="btn btn-danger btn-xs">Delete</button>';  
+                $sub_array[] = '<a href="' . $update_url . '" class="btn btn-danger btn-xs">Update</a>';
+                $sub_array[] = '<a href="' . $delete_url . '" class="btn btn-danger btn-xs">Delete</a>';  
                 $data[] = $sub_array;  
            }  
            $output = array(  
@@ -392,7 +395,22 @@ public function fetch_school()
            echo json_encode($output);  
 }
 
+// function for delete the school name
+public function deleteSchoolName()
+{
+    $id=$this->uri->segment('3');
+    $delete = $this->superadmin->deleteSchoolName($id);
+    if($delete)
+    {
+        $this->session->set_flashdata('delete',"Data Deleted Successfully");
+        $this->load->view('show_schoolname');
+    }
+    
+
+} 
 
 
 
 }// end of main class
+
+?>
