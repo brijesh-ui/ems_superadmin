@@ -402,12 +402,36 @@ public function deleteSchoolName()
     $delete = $this->superadmin->deleteSchoolName($id);
     if($delete)
     {
-        $this->session->set_flashdata('delete',"Data Deleted Successfully");
+        $this->session->set_flashdata('delete',"Data deleted successfully");
         $this->load->view('show_schoolname');
     }
     
 
+}
+// function for load data for edit the school name
+public function updateSchoolName()
+{
+    $this->load->view('updateSchoolName');
+
 } 
+
+public function update_data()
+{
+    if($this->input->post('update'))
+    {   
+
+    $id = $this->input->post('id');  
+    $school= $this->input->post('school_name');
+    $update = $this->superadmin->update_dataModel($id,$school);
+    if($update)
+    {
+        $this->session->set_flashdata('update','Your data updated successfully');
+        $this->load->view('show_schoolname');
+    } 
+
+    }    
+    
+}
 
 
 
