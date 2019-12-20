@@ -99,7 +99,7 @@ public function superadmin_login()
 
         else{
 
-            $this->session->set_flashdata('login_failed', 'Your account is not activated yet, plese wait ..');
+            $this->session->set_flashdata('login_failed', 'Your username and password are wrong,try Again');
             redirect(base_url('superadmin/index'));
             }
            }
@@ -185,17 +185,15 @@ public function password_sendMail()
     {
 
     $user_id = $getemail[0]['id'];
-    $url = base_url('superadmin/reset_password/"'.$user_id.'"');
-    $data = '<a href="'.$url.'">click here to reset password</a>';
-    print_r($data);
-    die;
+    $url = base_url() . '/superadmin/reset_password/' . $user_id;
+    // $data = '<a href="' . $url . '" class="btn btn-success btn-xs">click here to reset your password</a>';
     $to = $getemail[0]['email'];
     $subject = 'Your password reset request';
     $from = 'brijesh@sodainmind.com';
     // set email content
     $emailContent = '<header style="height: 30px; width: 100%; background-color: #333; text-align: center;">
-                     <h3 style="color: white;">Email from ems superadmin</h3></header>';
-    $emailContent.='<h2><a href="'.$url.'">click here to reset password</a></h2>';                         
+                     <h2 style="color: white;">EMS SUPERADMIN</h2></header>';
+    $emailContent.='<h4><a href="' . $url . '" class="btn btn-success btn-xs">click here to reset your password</a></h4>';                         
     
     // configure for send mail 
     $config['protocol']    = 'smtp';
@@ -203,10 +201,8 @@ public function password_sendMail()
     $config['smtp_port']   = 587;
     $config['crlf']        = "\r\n";
     $config['newline']     = "\r\n";
-    $config['smtp_user'] = '';
-    $config['smtp_pass'] = '';
-    // $config['api_user']   = 'Brijesh_Maurya';    //Important
-    // $config['api_key']    = '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';  //Important
+    $config['smtp_user']   = '';
+    $config['smtp_pass']   = '';
     // $config['api_format'] = 'json';
      
     $this->email->initialize($config);
