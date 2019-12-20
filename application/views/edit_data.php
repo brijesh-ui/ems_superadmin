@@ -27,7 +27,7 @@ $query = $this->db->select('*')
                         	
                             <form class="form-horizontal" id="signup-form" method="post" action="<?php echo base_url()?>superadmin/edit_backendUser/<?php echo $data->user_id;?>">
                                 <div class="card-body">
-                                    <h4 class="card-title">This is a Registration Form For Bakcend User.</h4>
+                                    <h4 class="card-title">This is a Update Form For Bakcend User.</h4>
                                      <span style="color: white;font-size: 15px;"><?php echo $this->session->flashdata('message'); ?></span>
                                     <div class="form-group row">
                                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">School Name</label>
@@ -127,6 +127,7 @@ $query = $this->db->select('*')
                                             <input type="text" class="form-control" name="user_dob" id="user_dob" placeholder="date of birth" value="<?php echo $data->user_dob; ?>" required onfocus="(this.type='date')"/>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="user_id" value="<?php echo $data->user_id;?>">
                                    
                                 </div>
                                 <div class="border-top">
