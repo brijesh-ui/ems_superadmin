@@ -1,20 +1,13 @@
 <?php include('header.php'); ?>
+<?php if($this->session->userdata('id') )
+    return redirect(base_url('superadmin/dashboard')); ?>
 <div class="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
         <div class="preloader">
             <div class="lds-ripple">
                 <div class="lds-pos"></div>
                 <div class="lds-pos"></div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Login box.scss -->
-        <!-- ============================================================== -->
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
             <div class="auth-box bg-dark border-top border-secondary">
                 <div id="loginform">
@@ -22,6 +15,7 @@
                         <span class="db" style="color: white;font-size: 20px;">Login Admin</span>
                     </div>
                      <span style="color: white;font-size: 15px;"><?php echo $this->session->flashdata('login_failed'); ?></span>
+                     <span style="color: white;font-size: 15px;"><?php echo $this->session->flashdata('activate'); ?></span>
                     <!-- Form -->
                     <form class="form-horizontal m-t-20" id="loginform" method="post" action="<?php echo base_url();?>superadmin/superadmin_login">
                         <div class="row p-b-30">
@@ -75,6 +69,19 @@
         $("#recoverform").hide();
         $("#loginform").fadeIn();
     });
+    </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
+    <script>
+     $(document).ready(function(){
+     $(':input[type="submit"]').prop('disabled', true);
+     $('input[type="text"]').keyup(function() {
+        if($(this).val() != '') {
+           $(':input[type="submit"]').prop('disabled', false);
+        }
+     });
+ });
     </script>
 
 <?php include('footer.php'); ?>

@@ -1,5 +1,6 @@
 <?php include 'header.php'; ?>
-
+<?php if(!$this->session->userdata('id') )
+    return redirect(base_url('superadmin/index'));?>
     <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
