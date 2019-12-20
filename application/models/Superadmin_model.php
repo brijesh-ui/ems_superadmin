@@ -96,18 +96,19 @@ function get_all_data()
            return $this->db->count_all_results();  
 }  
 
-public function deleteSchoolName($id)
+public function deleteSchoolName($id,$school)
 {
 	return $this->db->where('id',$id)
 	                ->delete('wp_school');
 }
 
+public function update_dataModel($id,$school)
+{
+
+   return $this->db->query("update wp_school SET school_name='$school'where id='".$id."'");
 
 
-
-
-
-
+}
 
 
 
