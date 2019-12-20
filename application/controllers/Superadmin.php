@@ -6,7 +6,7 @@ class Superadmin extends CI_Controller {
 public function __construct()
 {
     parent::__construct();
-    $this->load->model('Superadmin_model','superadmin');  
+    $this->load->model('Superadmin_model','superadmin'); 
                           
 }
 
@@ -85,17 +85,12 @@ public function superadmin_login()
         $password = md5($this->input->post('password'));
         $login_id = $this->superadmin->admin_login($username,$password);
         if($login_id)
-          {
-            $session_data = array
-            (
-            'id' => $login_id->id,
-            'username' => $login_id->username,
-            'password' => $login_id->password
-             );
-
-        $this->session->set_userdata('logged_in',$session_data);
+        {
+        
+        $this->session->set_userdata('id',$login_id);
+        $this->session->set_userdata('username',$login_id);
         redirect(base_url('superadmin/dashboard'));
-          }
+        }
 
         else{
 
@@ -120,13 +115,8 @@ public function dashboard()
 // admin logout 
 public function logout()
 {
-     $session_data = array
-            (
-            'id' => '',
-            'username' => '',
-            'password' => ''
-             );
-    $this->session->unset_userdata('logged_in',$session_data ); 
+    $this->session->unset_userdata('id');
+    $this->session->unset_userdata('username'); 
     return redirect(base_url('superadmin/index'));
 }
 
