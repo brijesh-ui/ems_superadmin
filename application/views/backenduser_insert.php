@@ -22,7 +22,7 @@
                                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">School Name</label>
                                         <div class="col-sm-6">
                                            <select name="school_id" id="school_id" class="form-control">
-                            		<option>Choose Your School</option>
+                            		<option>Choose School Name</option>
                             		<?php 
 
                                     $query = $this->db->get('wp_school');
@@ -39,7 +39,7 @@
                                         <label for="lname" class="col-sm-3 text-right control-label col-form-label">Role</label>
                                         <div class="col-sm-6">
                                              <select class="form-control" name="role" id="role">
-                               	   <option>Choose Your Role</option>
+                               	   <option>Choose Role</option>
                             <!-- data for choose role -->
                             <?php
                             $role	=	array(
@@ -68,61 +68,61 @@
                                     <div class="form-group row">
                                         <label for="lname" class="col-sm-3 text-right control-label col-form-label">Login Name</label>
                                         <div class="col-sm-6">
-                                           <input type="text" class="form-control" name="login_name" id="login_name" placeholder="login_name" value=""/>
+                                           <input type="text" class="form-control" name="login_name" id="login_name" placeholder="Login Name" value=""/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="email1" class="col-sm-3 text-right control-label col-form-label">Password</label>
                                         <div class="col-sm-6">
-                                           <input type="password" class="form-control" name="password" id="password" placeholder="password" value=""/>
+                                           <input type="password" class="form-control" name="password" id="password" placeholder="Password" value=""/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">First Name</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" value=""/>
+                                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value=""/>
                                         </div>
                                     </div>
 
                                      <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
                                         <div class="col-sm-6">
-                                           <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" value=""/>
+                                           <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value=""/>
                                         </div>
                                     </div>
 
                                      <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">User Email</label>
                                         <div class="col-sm-6">
-                                           <input type="email" class="form-control" name="user_email" id="user_email" placeholder="email" value=""/>
+                                           <input type="email" class="form-control" name="user_email" id="user_email" placeholder="User Email" value=""/>
                                         </div>
                                     </div>
 
                                      <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">User Phone</label>
                                         <div class="col-sm-6">
-                                           <input type="phone" class="form-control" name="user_phone" id="user_phone" placeholder="phone" value=""/>
+                                           <input type="phone" class="form-control" name="user_phone" id="user_phone" placeholder="User Phone" value=""/>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">User Mobile</label>
                                         <div class="col-sm-6">
-                                            <input type="phone" class="form-control" name="user_mobile" id="user_mobile" placeholder="mobile" value=""/>
+                                            <input type="phone" class="form-control" name="user_mobile" id="user_mobile" placeholder="User Mobile" value=""/>
                                         </div>
                                     </div>
 
                                      <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Date Of Join</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="user_doj" id="user_doj" placeholder="date of join" value="" required onfocus="(this.type='date')"/>
+                                            <input type="text" class="form-control" name="user_doj" id="user_doj" placeholder="Date Of Join" value="" required onfocus="(this.type='date')"/>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Date Of Birth</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="user_dob" id="user_dob" placeholder="date of birth" value="" required onfocus="(this.type='date')"/>
+                                            <input type="text" class="form-control" name="user_dob" id="user_dob" placeholder="Date Of Birth" value="" required onfocus="(this.type='date')"/>
                                         </div>
                                     </div>
                                    
