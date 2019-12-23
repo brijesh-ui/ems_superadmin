@@ -81,28 +81,61 @@ public function superadmin_login()
 
     if($this->form_validation->run())
     {
-        $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
-        $login_id = $this->superadmin->admin_login($username,$password);
-        if($login_id)
+    $username = $this->input->post('username');
+    $password = md5($this->input->post('password'));
+    $login_id = $this->superadmin->admin_login($username,$password);
+    if(!$login_id)
         {
-        
-        $this->session->set_userdata('id',$login_id);
-        $this->session->set_userdata('username',$login_id);
-        redirect(base_url('superadmin/dashboard'));
+            $this->session->set_flashdata('login_failed', 'Invalid Username or Password');
+            redirect(base_url('superadmin/index'));
+        }
+        elseif($login_id==1)
+        {
+           $this->session->set_flashdata('activate', 'Your account is not activate yet , plese_wait');
+           redirect(base_url('superadmin/index'));
+        }
+        else
+        {
+                $this->session->set_userdata('id',$login_id);
+                $this->session->set_userdata('username',$login_id);
+                redirect(base_url('superadmin/dashboard'));
         }
 
-        else{
-
-            $this->session->set_flashdata('login_failed', 'Your username and password are wrong,try Again');
-            redirect(base_url('superadmin/index'));
-            }
-           }
+    }
 
     else
-        {
+    {
             $this->load->view('superadmin/index');
-        }
+    }
+
+
+        // if($login_id==0)
+        // {
+
+        // $this->session->set_flashdata('activate', 'Your account is not activate yet , plese_wait');
+        // redirect(base_url('superadmin/index'));
+        // } 
+        // elseif($login_id)
+        // {
+        // $this->session->set_userdata('id',$login_id);
+        // $this->session->set_userdata('username',$login_id);
+        // redirect(base_url('superadmin/dashboard'));
+  
+        // }
+        // else
+        // {
+        //   $this->session->set_flashdata('login_failed', 'Invalid Username or Password');
+        // redirect(base_url('superadmin/index'));     
+        // }
+        // else
+        // {
+            
+        // $this->session->set_userdata('id',$login_id);
+        // $this->session->set_userdata('username',$login_id);
+        // redirect(base_url('superadmin/dashboard'));
+
+        // }
+ 
 
 }
 
@@ -250,74 +283,6 @@ public function data_insert()
     }
 }
 
-// check user exit in backend user table
-public function Checkemail_userbackend()
-{
-	$requestedEmail = $this->input->post('user_email');
-	$getemail=$this->db->get_where('wp_backend_user',array('user_email' => $requestedEmail))->num_rows();
-	if($getemail == 0)
-	{
-		echo 'true';
-	}
-	else
-	{
-		echo 'false';
-	}
-
-}
-
-public function Checkloginname_userbackend()
-{
-    $requestedLoginname = $this->input->post('login_name');
-    $getname=$this->db->get_where('wp_backend_user',array('login_name' => $requestedLoginname))->num_rows();
-    if($getname == 0)
-    {
-        echo 'true';
-    }
-    else
-    {
-        echo 'false';
-    }
-
-}
-
-
-// dbackend user data edit
-public function show_backenduser()
-{
-	$this->load->view('show_backenduser');
-}
-
-public function showedit_data()
-{
-	$this->load->view('edit_data');
-}
-
-public function edit_backendUser()
-{
-	if($this->input->post('submit'))
-	{
-    $user_id = $this->input->post('user_id');   
-	$data['school_id'] = $this->input->post('school_id');
-	$data['role'] = $this->input->post('role');
-	$data['login_name'] = $this->input->post('login_name');
-	$data['first_name'] = $this->input->post('first_name');
-	$data['last_name'] = $this->input->post('last_name');
-    $data['user_email'] = $this->input->post('user_email');
-    $data['user_phone'] = $this->input->post('user_phone');
-    $data['user_mobile'] = $this->input->post('user_mobile');
-    $data['user_dob'] = $this->input->post('user_dob');
-    $data['user_doj'] = $this->input->post('user_doj');
-	$update = $this->superadmin->update_data($user_id,$data);
-	if($update)
-	{
-		$this->session->set_flashdata('update','Your data updated successfully');
-        $this->load->view('show_backenduser');
-	}
-    
-	}	
-}
-
 // school data
 public function insertSchool()
 {
@@ -421,5 +386,6 @@ public function update_data()
     }    
     
 }
+
 
 }// end of main class
