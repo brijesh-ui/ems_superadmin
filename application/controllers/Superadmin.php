@@ -109,34 +109,6 @@ public function superadmin_login()
     }
 
 
-        // if($login_id==0)
-        // {
-
-        // $this->session->set_flashdata('activate', 'Your account is not activate yet , plese_wait');
-        // redirect(base_url('superadmin/index'));
-        // } 
-        // elseif($login_id)
-        // {
-        // $this->session->set_userdata('id',$login_id);
-        // $this->session->set_userdata('username',$login_id);
-        // redirect(base_url('superadmin/dashboard'));
-  
-        // }
-        // else
-        // {
-        //   $this->session->set_flashdata('login_failed', 'Invalid Username or Password');
-        // redirect(base_url('superadmin/index'));     
-        // }
-        // else
-        // {
-            
-        // $this->session->set_userdata('id',$login_id);
-        // $this->session->set_userdata('username',$login_id);
-        // redirect(base_url('superadmin/dashboard'));
-
-        // }
- 
-
 }
 
 // admin dashboard 
