@@ -20,33 +20,32 @@ public function admin_login($username,$password)
 {
 	$q = $this->db->select('*')
 	              ->where('username',$username)
-		          ->where('password',$password)
-		          ->from('superadmin')
-		          ->get();
+		            ->where('password',$password)
+		            ->from('superadmin')
+		            ->get();
 	$data = $q->result_array();
-	$status = $data[0]['status'];	               
-	if($status == 1) 
-	{
-        return true;
-    }
-    else
-    {
-    	return false;
-    }
+	$status = $data[0]['status'];	 
+  if(count($data)>0)     
+  {
+      if($status == 0)
+      {
+        return 0;
+      } 
+      else
+      {
+         return true;
+      }
+  }   
+  else
+  {
+     return false;
+  } 
  
 }
 
 public function insert_backenduser($data)
 {
 	return $this->db->insert('wp_backend_user',$data);
-
-}
-
-public function update_data($user_id,Array $data)
-{
-    
-   return $this->db->where('user_id',$user_id)
-                   ->update('wp_backend_user',$data);
 
 }
 
