@@ -1,7 +1,7 @@
 <?php include 'header.php'; ?>
 <style type="text/css">
 	.error {
-        color: white;
+        color: red;
      }
 </style>
 <div class="main-wrapper">

@@ -8,6 +8,14 @@ $query = $this->db->select('*')
                   ->get();
 $data =  $query->row();       
 ?>
+<style type="text/css">
+
+.error{
+    color: red;
+  }
+}
+    
+</style>
 
  <div class="page-wrapper">
     <div class="page-breadcrumb">

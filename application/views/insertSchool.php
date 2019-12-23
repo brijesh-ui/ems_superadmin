@@ -1,6 +1,13 @@
 <?php include 'header.php'; ?>
 <?php include 'rightmenu.php'; ?>
+<style type="text/css">
 
+.error{
+    color: red;
+  }
+}
+    
+</style>
  <div class="page-wrapper">
     <div class="page-breadcrumb">
        <div class="row">
