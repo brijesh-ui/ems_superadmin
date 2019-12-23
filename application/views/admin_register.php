@@ -93,15 +93,15 @@ $(document).ready(function(){
                 }, // end of rules
  messages: {
                     username: {
-                        required : "Username must is required",
-                        minlength: "First Name must contain at least 3 characters",
-                         remote: "username already exit."
+                        required : "Plese Provide Username",
+                        minlength: " Username Must Be At Least 3 Digit",
+                         remote: "Username Already Registered,Enter a Valid Username"
                     },
 
                     email: {
-                        required : "Email must is required",
-                        email: "Enter a valid email",
-                        remote: "Email already exit."
+                        required : "Plese Provide Email",
+                        email: "Plese Provide a Valid Email, Ex- Jhon@gmail.com",
+                        remote: "Email Already Registered,Enter a Valid Email"
                     },
                  
                 } // message tag end        

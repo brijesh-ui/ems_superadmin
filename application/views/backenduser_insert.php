@@ -4,9 +4,10 @@
 
 .error{
     color: red;
-  }
+    }
+.astrix{
+    color: red;
 }
-    
 </style>
  <div class="page-wrapper">
             <div class="page-breadcrumb">
@@ -24,7 +25,7 @@
                                     <h4 class="card-title">This is a Registration Form For Bakcend User.</h4>
                                      <span style="color: white;font-size: 15px;"><?php echo $this->session->flashdata('message'); ?></span>
                                     <div class="form-group row">
-                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">School Name</label>
+                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">School Name<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                            <select name="school_id" id="school_id" class="form-control">
                             		<option>Choose School Name</option>
@@ -41,7 +42,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Role</label>
+                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Role<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                              <select class="form-control" name="role" id="role" required>
                                	   <option>Choose Role</option>
@@ -71,33 +72,33 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Login Name</label>
+                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Login Name<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                            <input type="text" class="form-control" name="login_name" id="login_name" placeholder="Login Name" value=""/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email1" class="col-sm-3 text-right control-label col-form-label">Password</label>
+                                        <label for="email1" class="col-sm-3 text-right control-label col-form-label">Password<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" value=""/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">First Name<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value=""/>
                                         </div>
                                     </div>
 
                                      <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Last Name<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value=""/>
                                         </div>
                                     </div>
 
                                      <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">User Email</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">User Email<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                            <input type="email" class="form-control" name="user_email" id="user_email" placeholder="User Email" value=""/>
                                         </div>
@@ -111,21 +112,21 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">User Mobile</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">User Mobile<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                             <input type="tel" class="form-control" name="user_mobile" id="user_mobile" placeholder="User Mobile" minlength="10" maxlength="12" value=""/>
                                         </div>
                                     </div>
 
                                      <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Date Of Join</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Date Of Join<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" name="user_doj" id="user_doj" placeholder="Date Of Join" value="" onfocus="(this.type='date')"/>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Date Of Birth</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Date Of Birth<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" name="user_dob" id="user_dob" placeholder="Date Of Birth" value="" onfocus="(this.type='date')"/>
                                         </div>
@@ -193,7 +194,7 @@ $('#signup-form').validate({
 
                     password:{
                         required : true,
-                        minlength:5,
+                        minlength:8,
 
                     },
 
@@ -213,47 +214,48 @@ $('#signup-form').validate({
  messages: {
               
                     user_email: {
-                        required : "field must is required",
-                        email: "Enter a valid email",
-                        remote: "Email is already exit."
+                        required : "Plese Provide Email Address",
+                        email: "Plese Enter a Valid Email, Ex-Jhon@gmail.com",
+                        remote: "Email Is Already Exit, Enter a Valid Email"
                     },
 
                     login_name: {
-                        required : "login name must is required",
-                        minlength: "minlength is 3"
-                       // remote: "login name is already exit."
+                        required : "Plese Provide Login Name",
+                        minlength: "Login Name Must Be At Least 3 Digit",
+                           remote: "Login Name Is Already Exit, Enter a Valid Name"
                     },
 
                     school_id:{
-                        required : "field must be required"
+                        required : "Plese Choose School Name"
                     },
 
                     first_name:{
-                        required : "field must be required"
+                        required : "Plese Provide First Name"
                     },
 
                     last_name:{
-                        required : "field must be required"
+                        required : "Plese Provide Last Name"
                     },
 
                     password:{
-                        required : "field must be required",
-                        minlength: "password must be 5 charecter"
+                        required : "Plese Provide A Valid Password",
+                        minlength: "Password  Must Be At Least 8 Digit"
                     },
 
                     user_mobile:{
-                        required : "mobile must be required",
-                        number : "only number allowed"
+                        required : "Plese Provide Your Mobile",
+                        number : "Plese Enter Only Number, Ex- 1234567890"
                     },
                     user_dob:{
-                        required : "date of birth must be required"
+                        required : "Plese Provide Your Date Of Birth"
                     },
                     user_doj:{
-                        required : "date of joining must be required"
+                        required : "Plese Provide Your Date Of Joining"
                     },
                     user_phone:{
-                         number : "only number allowed"
+                         number : "Plese Enter Only Number, Ex- 1234567890"
                     },
+                    
                  
          } // message tag end        
 });     

@@ -16,7 +16,9 @@ $getData = $query->row();
 .error{
     color: red;
   }
-}
+.astrix{
+    color: red;
+} 
     
 </style>
 <div class="page-wrapper">
@@ -36,7 +38,7 @@ $getData = $query->row();
                                     <h4 class="card-title">This is a Update Form For Bakcend User.</h4>
                                      <span style="color: white;font-size: 15px;"><?php echo $this->session->flashdata('message'); ?></span>
                                     <div class="form-group row">
-                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">School Name</label>
+                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">School Name<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                            <select name="school_id" id="school_id" class="form-control">
                             		<option><?php echo $getData->school_name; ?></option>
@@ -53,7 +55,7 @@ $getData = $query->row();
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Role</label>
+                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Role<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                              <select class="form-control" name="role" id="role">
                                	   <option>Choose Your Role</option>
@@ -80,27 +82,27 @@ $getData = $query->row();
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Login Name</label>
+                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Login Name<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                            <input type="text" class="form-control" name="login_name" id="login_name" placeholder="login_name" value="<?php echo $getData->login_name; ?>"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">First Name<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" value="<?php echo $getData->first_name; ?>"/>
                                         </div>
                                     </div>
 
                                      <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Last Name<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" value="<?php echo $getData->last_name; ?>"/>
                                         </div>
                                     </div>
 
                                      <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">User Email</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">User Email<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                            <input type="email" class="form-control" name="user_email" id="user_email" placeholder="email" value="<?php echo $getData->user_email; ?>"/>
                                         </div>
@@ -114,21 +116,21 @@ $getData = $query->row();
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">User Mobile</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">User Mobile<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                             <input type="tel" class="form-control" name="user_mobile" id="user_mobile" placeholder="mobile" value="<?php echo $getData->user_mobile; ?>"/>
                                         </div>
                                     </div>
 
                                      <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Date Of Join</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Date Of Join<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" name="user_doj" id="user_doj" placeholder="date of join" value="<?php echo $getData->user_doj; ?>" required onfocus="(this.type='date')"/>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Date Of Birth</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Date Of Birth<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" name="user_dob" id="user_dob" placeholder="date of birth" value="<?php echo $getData->user_dob; ?>" required onfocus="(this.type='date')"/>
                                         </div>
@@ -193,22 +195,20 @@ $(document).ready(function(){
 
                     last_name: {
                         required : true,
-                        minlength: 3
                     },
 
                     password: {
                         required : true,
-                        minlength: 5
+                        minlength: 8
                     },
 
                     user_phone: {
-                        required : true,
-                        minlength: 3
+                        number: true
                     },
 
                     user_mobile: {
                         required : true,
-                        maxlength: 12	 
+                        number: true	 
                     },
 
 
@@ -216,16 +216,50 @@ $(document).ready(function(){
 
                 }, // end of rules
  messages: {
-              
-                    user_email: {
-                        required : "Email must is required",
-                       user_email: "Enter a valid email",
-                           remote: "email already exit."
+               user_email: {
+                        required : "Plese Provide Email Address",
+                        email: "Plese Enter a Valid Email, Ex-Jhon@gmail.com",
+                        remote: "Email Is Already Exit, Enter a Valid Email"
                     },
 
                     login_name: {
-                        required : "Login name must is required",
-                           remote: "login name already exit."
+                        required : "Plese Provide Login Name",
+                        minlength: "Login Name Must Be At Least 3 Digit",
+                           remote: "Login Name Is Already Exit, Enter a Valid Name"
+                    },
+
+                    school_id:{
+                        required : "Plese Choose School Name"
+                    },
+
+                    first_name:{
+                        required : "Plese Provide First Name"
+                    },
+
+                    last_name:{
+                        required : "Plese Provide Last Name"
+                    },
+
+                    password:{
+                        required : "Plese Provide A Valid Password",
+                        minlength: "Password  Must Be At Least 8 Digit"
+                    },
+
+                    user_mobile:{
+                        required : "Plese Provide Your Mobile",
+                        number : "Plese Enter Only Number, Ex- 1234567890"
+                    },
+                    user_dob:{
+                        required : "Plese Provide Your Date Of Birth"
+                    },
+                    user_doj:{
+                        required : "Plese Provide Your Date Of Joining"
+                    },
+                    user_phone:{
+                         number : "Plese Enter Only Number, Ex- 1234567890"
+                    },
+                    role:{
+                         required : "Plese Provide Your Role"
                     },
                  
                 } // message tag end        

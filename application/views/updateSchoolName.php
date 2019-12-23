@@ -13,7 +13,9 @@ $data =  $query->row();
 .error{
     color: red;
   }
-}
+.astrix{
+    color: red;
+} 
     
 </style>
 
@@ -31,7 +33,7 @@ $data =  $query->row();
                                 <div class="card-body">
                                     <h4 class="card-title">Update School Name.</h4>
                                     <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">School Name</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">School Name<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" name="school_name" id="school_name" placeholder="School Name" value="<?php echo $data->school_name ?>" />
                                         </div>
@@ -73,8 +75,8 @@ $('#signup-form').validate({
  messages: {
               
                     school_name: {
-                        required : "School Name must is required",
-                        remote: "School Name is already exit."
+                        required : "Plese Provide School Name",
+                        remote: "School Name Already Registered,Enter a New School Name"
                     },
                  
          } // message tag end        

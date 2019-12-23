@@ -5,7 +5,9 @@
 .error{
     color: red;
   }
-}
+.astrix{
+    color: red;
+}  
     
 </style>
  <div class="page-wrapper">
@@ -23,7 +25,7 @@
                                     <h4 class="card-title">Insert School Name.</h4>
                                      <span style="color: black;font-size: 15px;"><?php echo $this->session->flashdata('message'); ?></span>
                                     <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">School Name</label>
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">School Name<span class="astrix">*</span></label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" name="school_name" id="school_name" placeholder="School Name" value="" />
                                         </div>
@@ -64,8 +66,8 @@ $('#signup-form').validate({
  messages: {
               
                     school_name: {
-                        required : "School Name must is required",
-                        remote: "School Name is already exit."
+                        required : "Plese Provide Your School Name",
+                        remote: "School Name is already exit,Plese Enter Another Name"
                     },
                  
          } // message tag end        
