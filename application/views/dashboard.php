@@ -57,7 +57,13 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
+                                <?php
+                                 if(!empty($this->session->userdata('id'))): 
+                                    ?>
+                                   <span style="text-transform: uppercase;font-weight: bold;"><?php echo $this->session->userdata('username'); ?></span> 
+                                <?php endif;?>
+                                </a>
                                 <a class="dropdown-item" href="<?php echo base_url();?>superadmin/logout"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                                 <div class="dropdown-divider"></div>
                             </div>
@@ -88,7 +94,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Backend User </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="<?php echo base_url();?>superadmin/load_backend_user" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Insert User Data </span></a></li>
-                                <li class="sidebar-item"><a href="<?php echo base_url();?>superadmin/show_backenduser" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Show User Data </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url();?>DataShow/show_userData" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Show User Data </span></a></li>
                                
                             </ul>
                          </li>   
