@@ -96,8 +96,11 @@ public function superadmin_login()
         }
         else
         {
-                $this->session->set_userdata('id',$login_id);
-                $this->session->set_userdata('username',$login_id);
+                $set_data = array(
+                                  'id' => $login_id['id'],
+                                  'username' => $login_id['username']
+                                 );
+                $this->session->set_userdata($set_data);
                 redirect(base_url('superadmin/dashboard'));
         }
 
